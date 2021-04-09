@@ -1,0 +1,33 @@
+p#notice
+  = notice
+h1 Products
+table.table.table-striped
+  thead
+    tr
+      th Name
+      th Reference
+      th Category
+      th Price
+      th
+  tbody
+    - if @products.any?
+      - @products.each do |product|
+        tr
+          td
+            = product.name
+          td
+            = product.reference
+          td
+            = product.category
+          td
+            = product.decorate.price
+          td
+            .btn-group[role="group"]
+              = link_to 'Show', product_path(product), class: 'btn btn-outline-primary btn-xs'
+              = link_to 'Edit', edit_product_path(product), class: 'btn btn-xs btn-outline-primary'
+              = link_to 'Destroy', product_path(product), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-outline-primary'
+    - else
+      td.text-center[colspan="5"]
+        | No products yet
+hr
+= link_to 'New Product', new_product_path, class: 'btn btn-primary btn-sm'

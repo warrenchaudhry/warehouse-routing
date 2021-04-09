@@ -1,0 +1,20 @@
+p#notice
+  = notice
+h1 Criteria Definition
+hr
+ul.list-group.list-group-flush
+  li.list-group-item
+    b References:
+    span.ml-2 = @criteria_definition.references.join(', ')
+  li.list-group-item
+    b Categories:
+    span.ml-2 = @criteria_definition.categories.join(', ')
+  li.list-group-item
+    b Max Product Price:
+    span.ml-2 = @criteria_definition.decorate.max_product_price
+  li.list-group-item
+    b Destination:
+    span.ml-2 = @criteria_definition.destination
+hr
+  = link_to 'Edit', edit_criteria_definition_path(@criteria_definition), class: 'btn btn-warning btn-sm'
+  = link_to 'Back', criteria_definitions_path, class: 'btn btn-primary btn-sm ml-2'

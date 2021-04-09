@@ -1,0 +1,21 @@
+p#notice
+  = notice
+h1 Product
+hr
+ul.list-group.list-group-flush
+  li.list-group-item
+    b Name:
+    span.ml-2 = @product.name
+  li.list-group-item
+    b Reference:
+    span.ml-2 = @product.reference
+  li.list-group-item
+    b Category:
+    span.ml-2 = @product.category
+  li.list-group-item
+    b Price:
+    span.ml-2
+      = @product.decorate.price
+hr
+  = link_to 'Edit', edit_product_path(@product), class: 'btn btn-warning btn-sm'
+  = link_to 'Back', products_path, class: 'btn btn-primary btn-sm ml-2'

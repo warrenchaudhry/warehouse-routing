@@ -1,0 +1,29 @@
+p#notice
+  = notice
+h1 Criteria Definitions
+table.table.table-striped
+  thead
+    tr
+      th References
+      th Categories
+      th Max Product Price
+      th Destination
+      th
+  tbody
+    - if @criteria_definitions.any?
+      - @criteria_definitions.each do |ct|
+        tr
+          td = ct.decorate.references
+          td = ct.decorate.categories
+          td = ct.decorate.max_product_price
+          td = ct.destination
+          td
+            .btn-group[role="group"]
+              = link_to 'Show', criteria_definition_path(ct), class: 'btn btn-outline-primary btn-xs'
+              = link_to 'Edit', edit_criteria_definition_path(ct), class: 'btn btn-xs btn-outline-primary'
+              = link_to 'Destroy', criteria_definition_path(ct), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-outline-primary'
+    - else
+      td.text-center[colspan="5"]
+        | No criteria definitions yet
+hr
+= link_to 'New Criteria Definition', new_criteria_definition_path, class: 'btn btn-primary btn-sm'

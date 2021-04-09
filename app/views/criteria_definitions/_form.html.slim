@@ -1,0 +1,16 @@
+- if @criteria_definition.errors[:base]
+
+= simple_form_for @criteria_definition, wrapper: :horizontal_form do |f|
+  = f.input :references,
+      as: :string,
+      input_html: { class: 'col-sm-5', name: 'criteria_definition[references][]', value: f.object.references&.join(", ") },
+      hint: 'Separated by commas'
+  = f.input :categories,
+      as: :string,
+      input_html: { class: 'col-sm-5', name: 'criteria_definition[categories][]', value: f.object.categories&.join(", ") },
+      hint: 'Separated by commas'
+  = f.input :max_product_price, as: :numeric, input_html: { class: 'col-sm-5' }
+  = f.input :destination, input_html: { class: 'col-sm-5' }
+  .col-sm-7
+    = f.button :submit, class: 'btn btn-sm btn-primary float-right'
+  .clearfix

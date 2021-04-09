@@ -1,0 +1,43 @@
+p#notice
+  = notice
+h1 Product Routes
+hr
+= form_tag product_routes_search_path do
+  .form-group.required.col-xs-6
+    = text_field_tag :reference, params[:reference], { class: "form-control col-xs-5", required: true, placeholder: 'Enter reference here' }
+  = submit_tag "Search", class: "btn btn-primary"
+- if @product_route
+  hr.mt-2
+  -if @product_route.ranked_definitions.present?
+    .row-fluid
+      dl.row
+        dt.col-sm-3 Product Name:
+        dd.col-sm-9 = @product_route.product.name
+        dt.col-sm-3 Product Reference:
+        dd.col-sm-9 = @product_route.product.reference
+        dt.col-sm-3 Product Category:
+        dd.col-sm-9 = @product_route.product.category
+        dt.col-sm-3 Product Price:
+        dd.col-sm-9 = @product_route.product.decorate.price
+
+      table.table.table-bordered
+        thead
+          tr
+            th Priority
+            th Reference
+            th Category
+            th Max Product Price
+            th Destination
+        tbody
+          - @product_route.ranked_definitions.each do |rank,definitions|
+              - definitions.each do |definition|
+                tr
+                  td = rank
+                  td = definition.reference
+                  td = definition.category
+                  td.text-right = definition.max_price || '--'
+                  td = definition.destination
+  - else
+    p.lead
+      | No destination found for product with reference
+      span.ml-1.text-info: strong =  @product_route.reference
